@@ -1,0 +1,33 @@
+<ng-container *ngIf="bookDetails">
+  <mat-card *ngIf="bookDetails" class="book-details-card">
+    <!-- Book Cover Image and Info Section -->
+    <div class="book-details-header">
+      <!-- Cover Image -->
+      <div class="cover-image">
+        <img
+          [src]="'data:image/jpeg;base64,' + bookDetails.coverImage"
+          alt="Cover image of {{ bookDetails.title }}"
+        />
+      </div>
+  
+      <!-- Book Title and Author -->
+      <div class="book-info">
+        <h2 mat-line>{{ bookDetails.title }}</h2>
+        <p mat-line class="author">Author: {{ bookDetails.authorName }}</p>
+        <p mat-line class="release-date">Released: {{ bookDetails.releaseDate | date: 'yyyy' }}</p>
+      </div>
+    </div>
+  
+    <!-- Divider -->
+    <mat-divider></mat-divider>
+  
+    <!-- Additional Book Details -->
+    <mat-card-content>
+      <p><strong>Publisher:</strong> {{ bookDetails.publisher }}</p>
+      <p><strong>Number of Pages:</strong> {{ bookDetails.numberOfPages }}</p>
+      <p><strong>Description:</strong></p>
+      <p class="description">{{ bookDetails.description }}</p>
+    </mat-card-content>
+  </mat-card>
+  
+</ng-container>

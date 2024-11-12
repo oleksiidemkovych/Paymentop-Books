@@ -1,0 +1,15 @@
+.book-list-header-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+
+  button {
+    margin-bottom: 20px;
+  }
+
+  .search-field {
+    width: 300px;
+  }
+}

@@ -1,0 +1,91 @@
+<h2 mat-dialog-title>{{ bookDetails ? "Edit" : "Add" }} Book</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field class="form-field">
+      <mat-label>Book Title</mat-label>
+      <input
+        matInput
+        formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Author</mat-label>
+      <input
+        matInput
+        formControlName="authorName" />
+    </mat-form-field>
+
+    <!-- Cover Image Upload -->
+    <div class="form-field">
+      <label>Cover Image</label>
+      <input
+        type="file"
+        (change)="onImageSelected($event)"
+        accept="image/*" />
+    </div>
+    <img
+      *ngIf="form.controls.coverImage.value"
+      [src]="form.controls.coverImage.value | base64Image:'jpeg'"
+      alt="Selected cover image"
+      class="cover-preview" />
+
+    <mat-form-field class="form-field">
+      <mat-label>Select Year</mat-label>
+      <input
+        matInput
+        [matDatepicker]="datePicker"
+        [value]="bookDetails?.releaseDate"
+        required
+        (dateChange)="onYearSelect($event.value, datePicker)" />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="datePicker"></mat-datepicker-toggle>
+      <mat-datepicker
+        #datePicker
+        startView="multi-year"
+        (yearSelected)="onYearSelect($event, datePicker)">
+      </mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        cdkTextareaAutosize
+        formControlName="description"
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="10"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Pages</mat-label>
+      <input
+        matInput
+        formControlName="numberOfPages" />
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Publisher</mat-label>
+      <input
+        matInput
+        formControlName="publisher" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+  <button
+    mat-stroked-button
+    mat-dialog-close>
+    Cancel
+  </button>
+  <button
+    color="primary"
+    mat-raised-button
+    [mat-dialog-close]="form.value"
+    [disabled]="form.invalid || form.pristine">
+    Save
+  </button>
+</mat-dialog-actions>

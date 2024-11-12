@@ -1,0 +1,12 @@
+.book-cover-image {
+  cursor: pointer;
+}
+
+.mat-mdc-card-actions {
+  justify-content: space-between;
+  align-items: end;
+
+  button:first-child {
+    margin-right: 8px;
+  }
+}

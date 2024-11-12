@@ -1,0 +1,14 @@
+<app-books-list-header
+  (addBook)="createBook()"
+  (search)="onSearch($event)" />
+<ng-container *ngIf="filteredBooks$ | async as books">
+  <div class="books-list-container">
+    <ng-container *ngFor="let book of books">
+      <app-book-card
+        [book]="book"
+        (editBookClick)="editBook(book.id ?? 0)"
+        (deleteBookClick)="deleteBookById(book.id ?? 0)"
+        (openBookDetailsClick)="openBookDetailsDialog(book.id ?? 0)" />
+    </ng-container>
+  </div>
+</ng-container>
